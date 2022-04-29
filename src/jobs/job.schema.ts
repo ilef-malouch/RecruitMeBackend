@@ -10,12 +10,9 @@ export class Job {
 
   @Prop({required:true})
   type: string;
-
-  @Prop()
-  niveauEtude : string;
-  @Prop({required:true})
-  langue:string;
-  @Prop({required:true})
+ 
+  niveauEtude : string; 
+  langue:string; 
   genre:string;
 
   description:string;
