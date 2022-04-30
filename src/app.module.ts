@@ -9,7 +9,7 @@ import { JobsModule } from './jobs/jobs.module';
 import { AuthrecruterModule } from './authentification/authRecruter/authrecruter.module';
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb+srv://salma:salma@cluster0.eeaxx.mongodb.net/recrutmeDAtabase?retryWrites=true&w=majority"),
+    MongooseModule.forRoot("mongodb+srv://zaineb:93399818@cluster0.x0r5l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"),
     //JobOfferModule,
     AuthclientModule,
     AuthrecruterModule,

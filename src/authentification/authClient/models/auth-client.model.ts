@@ -23,6 +23,7 @@ export class AuthClient extends mongoose.Document{
     PhoneNumber:string;
     @Prop({required:true,IsEmail:true})
     Email:string;
+    @Prop()
     Salt:string;
     @Prop({required:true})
     Password:string;

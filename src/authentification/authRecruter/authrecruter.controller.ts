@@ -9,7 +9,7 @@ export class AuthrecruterController {
     constructor(private authRecruterService:AuthrecruterService){}
 
    
-    @Post("signin")
+    @Post("/signin")
     async signIn(@Body() dto:authRecruterSignInDto,@Res({ passthrough: true }) response: Response){
      
         const token = await this.authRecruterService.signInRecruter(dto)
