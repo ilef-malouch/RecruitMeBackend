@@ -19,11 +19,22 @@ export class JobsService {
             competences: job.competences,
             dateExpiration: job.dateExpiration,
             motsCles: job.motsCles
-        }
+        };
     }
-    async create(createJobDto: CreateJobDto): Promise<JobDetails> {
-        const createdJob = new this.jobModel(createJobDto);
-        return this._getJobDetails(await  createdJob.save());
+    async create(job: CreateJobDto): Promise<JobDetails> {
+        const createdJob = new this.jobModel({
+            poste: job.poste,
+            type: job.type,
+            niveauEtude: job.niveauEtude,
+            langue: job.langue,
+            genre: job.genre,
+            description: job.description,
+            competences: job.competences,
+            dateExpiration: job.dateExpiration,
+            motsCles: job.motsCles
+        });
+        createdJob.save()
+        return this._getJobDetails(createdJob );
     }
 
     async findAll(): Promise<Job[]> {

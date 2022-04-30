@@ -1,5 +1,5 @@
 import { Prop } from "@nestjs/mongoose";
-import { IsNotEmpty, MaxLength, MinLength } from 'class-validator';
+import { IsNotEmpty, IsOptional, MaxLength, MinLength } from 'class-validator';
 
 
 export class CreateJobDto {
@@ -13,9 +13,17 @@ export class CreateJobDto {
     langue: string; 
     @IsNotEmpty({ message: "Priére d'entrer le poste " })
     genre: string;
+    @IsOptional()
     description: string;
+    @IsOptional()
+    @Prop()
+    @IsOptional()
     competences: string;
+    @Prop()
+    @IsOptional()
     dateExpiration: string;
+    @IsNotEmpty({ message: "Priére d'entrer les mots clés " })
     @Prop([String])
+    @IsOptional()
     motsCles: string[];
 }
