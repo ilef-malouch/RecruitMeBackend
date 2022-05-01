@@ -10,7 +10,7 @@ export class AuthclientController {
     constructor(private authClientService:AuthclientService){}
 
    
-    @Post("signin")
+    @Post("/signin")
     async signIn(@Body() dto:authClientSignInDto,@Res({ passthrough: true }) response: Response){
      
         const token = await this.authClientService.signInClient(dto)
@@ -64,7 +64,7 @@ export class AuthclientController {
       };
     }
 
-    @Get('signout')
+    @Get('/signout')
     async logout(@Req()req:Request,@Res({ passthrough: true }) res: Response) {
       
       const token =req.cookies.access_token;
