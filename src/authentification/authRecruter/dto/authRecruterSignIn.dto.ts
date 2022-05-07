@@ -1,5 +1,5 @@
-// import { PickType } from '@nestjs/swagger';
-import { PickType } from '@nestjs/mapped-types'; 
+ import { PickType } from '@nestjs/swagger';
+// import { PickType } from '@nestjs/mapped-types'; 
 import { authRecruterSignUpDto } from './authRecruterSignUp.dto';
 
 

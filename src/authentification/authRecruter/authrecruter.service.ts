@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common'; 
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { AuthRecruter, AuthRecruterDocument } from './models/auth-recruter.model';
