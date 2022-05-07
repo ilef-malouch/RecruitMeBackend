@@ -1,8 +1,16 @@
-import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { AuthrecruterService } from './authrecruter.service';
 import { authRecruterSignInDto } from './dto/authRecruterSignIn.dto';
 import { Response ,Request } from 'express';
 import { authRecruterSignUpDto } from './dto/authRecruterSignUp.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { v4 as uuidv4 } from 'uuid'
+
+const editFileName = (req, file, cb) => {
+  const randomName = uuidv4()+file.originalname;
+  cb(null, randomName);
+}
 
 @Controller('authrecruter')
 export class AuthrecruterController {
@@ -20,7 +28,7 @@ export class AuthrecruterController {
     
    
  
-    /*@Post('/picture/:jwt')
+    @Post('/picture/:jwt')
     @UseInterceptors(FileInterceptor('file', {
     storage: diskStorage({
     destination: './files',
@@ -37,27 +45,30 @@ export class AuthrecruterController {
     };
     console.log("2")
     console.log(response.filename);
-    return this.authClientService.updatePicture(jwt,response.filename);
+    return this.authRecruterService.updatePicture(jwt,response.filename);
    
     
-  } */
-
-    @Get('/:imgpath')
+  } 
+  
+  @Get('/:imgpath')
     seeUploadedFile(@Param('imgpath') image,@Res() res) {
       return res.sendFile(image, { root: './files' });
     }
 
     
 
-    @Get("recruterInfo/:jwt")
+    @Get("/recruterInfo/:jwt")
     async getRecruterInfo(@Param("jwt")jwt:any){
       const recruterInfo= this.authRecruterService.findRecruterByJWT(jwt);
       const recruter = await recruterInfo;
+      console.log("zaineb")
       return {
         "compagnyName": recruter.CompagnyName,
         "idCompagny": recruter.IdCompagny,
         "domaine": recruter.Domaine,
         "email": recruter.Email,
+        "facebookLink": recruter.FacebookLink,
+        "linkedinLink": recruter.LinkedinLink,
         "image":recruter.Image,
       };
     }

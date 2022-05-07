@@ -60,5 +60,7 @@ export  class authClientSignUpDto {
     Jwt:string;
 
    Image:string;
+
+   Cv:string;
 }
 

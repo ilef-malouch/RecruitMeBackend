@@ -26,6 +26,13 @@ export class AuthrecruterService {
         return Recruters ;
     }
     
+    async updatePicture(jwt:string, imageName:string){
+        const client =await this.findRecruterByJWT(jwt); 
+        client.Image="http://localhost:3000/authrecruter/"+imageName ;
+        client.save() ;
+        return client ;
+    }
+
     async findRecruterByEmail(email:string):Promise<AuthRecruter>{
         const Recruter =await this.authRecruterModel.findOne({"Email":email});
         if(Recruter){
