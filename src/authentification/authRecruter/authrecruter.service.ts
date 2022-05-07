@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common'; 
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { AuthRecruter, AuthRecruterDocument } from './models/auth-recruter.model';
@@ -28,7 +28,7 @@ export class AuthrecruterService {
     
     async updatePicture(jwt:string, imageName:string){
         const client =await this.findRecruterByJWT(jwt); 
-        client.Image="http://localhost:3000/authrecruter/"+imageName ;
+        client.Image="http://localhost:8000/recrutme/authrecruter/"+imageName ;
         client.save() ;
         return client ;
     }
