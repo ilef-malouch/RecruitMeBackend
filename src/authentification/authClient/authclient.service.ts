@@ -1,11 +1,11 @@
 import { Model } from 'mongoose';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthClient, AuthClientDocument } from './models/auth-client.model';
-import { InjectModel } from '@nestjs/mongoose';
-import { JwtService } from '@nestjs/jwt';
+import { InjectModel } from '@nestjs/mongoose'; 
+import  { JwtService } from '@nestjs/jwt';
 import { authClientSignInDto } from './dto/authClientSignIn.dto';
 import { RequiredException } from './exceptions/Required.exception';
-import * as bcrypt from "bcrypt";
+import * as bcrypt from 'bcrypt';
 import { authClientSignUpDto } from './dto/authClientSignUp.dto';
 import { UnconfirmException } from './exceptions/confirm.exception';
 import { ExistingEmailException } from './exceptions/ExistingEmail.exception';
