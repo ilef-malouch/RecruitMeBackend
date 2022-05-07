@@ -37,6 +37,8 @@ export class AuthClient extends mongoose.Document{
     Jwt:string;
     @Prop()
     Image:string;
+    @Prop()
+    Cv:string;
 
 }
 export const AuthClientSchema = SchemaFactory.createForClass(AuthClient);

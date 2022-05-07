@@ -1,9 +1,17 @@
-import { Body, Controller, Get, Param, Post, Req, Res, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthclientService } from './authclient.service';
 import { authClientSignInDto } from './dto/authClientSignIn.dto';
 import { Response ,Request } from 'express';
 import { authClientSignUpDto } from './dto/authClientSignUp.dto';
+import { diskStorage } from 'multer';
+
+import { v4 as uuidv4 } from 'uuid'
+
+const editFileName = (req, file, cb) => {
+  const randomName = uuidv4()+file.originalname;
+  cb(null, randomName);
+}
 
 @Controller('authclient')
 export class AuthclientController {
@@ -20,8 +28,8 @@ export class AuthclientController {
     }
     
    
- 
-    /*@Post('/picture/:jwt')
+   
+    @Post('/picture/:jwt')
     @UseInterceptors(FileInterceptor('file', {
     storage: diskStorage({
     destination: './files',
@@ -31,19 +39,40 @@ export class AuthclientController {
     uploadFile(
     @Param("jwt")jwt,
     @UploadedFile() file: Express.Multer.File) {
-    console.log("1")
+    console.log("com")
     const response = {
     originalname: file.originalname,
     filename: file.filename,
     };
-    console.log("2")
+   console.log("emnce")
     console.log(response.filename);
     return this.authClientService.updatePicture(jwt,response.filename);
    
     
-  } */
+  } 
+  @Post('/cv/:jwt')
+    @UseInterceptors(FileInterceptor('file', {
+    storage: diskStorage({
+    destination: './files',
+    filename: editFileName,
+    }),
+    }))
+    uploadCv(
+    @Param("jwt")jwt,
+    @UploadedFile() file: Express.Multer.File) {
+    console.log("com")
+    const response = {
+    originalname: file.originalname,
+    filename: file.filename,
+    };
+   console.log("emnce")
+    console.log(response.filename);
+    return this.authClientService.updateCv(jwt,response.filename);
+   
+    
+  } 
 
-    @Get('/:imgpath')
+   @Get('/:imgpath')
     seeUploadedFile(@Param('imgpath') image,@Res() res) {
       return res.sendFile(image, { root: './files' });
     }
@@ -54,13 +83,18 @@ export class AuthclientController {
     async getClientInfo(@Param("jwt")jwt:any){
       const clientInfo= this.authClientService.findClientByJWT(jwt);
       const client = await clientInfo;
+      console.log("1")
+      
       return {
         "firstName": client.FirstName,
         "familyName": client.FamilyName,
         "birthday": client.Birthday,
         "domaine": client.Domaine,
         "email": client.Email,
+        "githubLink":client.GithubLink,
+        "linkedinLink":client.LinkedinLink,
         "image":client.Image,
+        "cv":client.Cv,
       };
     }
 

@@ -58,7 +58,19 @@ export class AuthclientService {
         return token ;
   
     }
+    async updatePicture(jwt:string, imageName:string){
+        const client =await this.findClientByJWT(jwt); 
+        client.Image="http://localhost:3000/authclient/"+imageName ;
+        client.save() ;
+        return client ;
+    }
     
+    async updateCv(jwt:string, imageName:string){
+        const client =await this.findClientByJWT(jwt); 
+        client.Cv="http://localhost:3000/authclient/"+imageName ;
+        client.save() ;
+        return client ;
+    }
     async updateClientByJWT(dto:authClientSignInDto,jwt:string){
   
         const updatedClient =await this.findClientByEmail(dto.Email);
