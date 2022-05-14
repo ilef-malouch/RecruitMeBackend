@@ -11,8 +11,8 @@ export class JobsService {
         return {
             id: job._id,
             poste: job.poste,
-            type: job.type,
-            niveauEtude: job.niveauEtude,
+            typeContrat: job.typeContrat,
+            secteur: job.secteur,
             langue: job.langue,
             genre: job.genre,
             description: job.description,
@@ -24,8 +24,8 @@ export class JobsService {
     async create(job: CreateJobDto): Promise<JobDetails> {
         const createdJob = new this.jobModel({
             poste: job.poste,
-            type: job.type,
-            niveauEtude: job.niveauEtude,
+            typeContrat: job.typeContrat,
+            secteur: job.secteur,
             langue: job.langue,
             genre: job.genre,
             description: job.description,

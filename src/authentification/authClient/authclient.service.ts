@@ -60,14 +60,14 @@ export class AuthclientService {
     }
     async updatePicture(jwt:string, imageName:string){
         const client =await this.findClientByJWT(jwt); 
-        client.Image="http://localhost:8000/authclient/"+imageName ;
+        client.Image="http://localhost:8000/recrutme/authclient/"+imageName ;
         client.save() ;
         return client ;
     }
     
     async updateCv(jwt:string, imageName:string){
         const client =await this.findClientByJWT(jwt); 
-        client.Cv="http://localhost:8000/authclient/"+imageName ;
+        client.Cv="http://localhost:8000/recrutme/authclient/"+imageName ;
         client.save() ;
         return client ;
     }
