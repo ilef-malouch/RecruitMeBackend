@@ -1,28 +1,26 @@
 import { Prop } from "@nestjs/mongoose";
 import { IsNotEmpty, IsOptional, MaxLength, MinLength } from 'class-validator';
+import { TypeContratEnum } from "../enums/todo-status.enum";
 
 
 export class CreateJobDto {
     @IsNotEmpty({ message: "Priére d'entrer le poste " })
     poste: string;
-    @IsNotEmpty({ message: "Priére d'entrer le type " })
-    type: string;  
-    @IsNotEmpty({ message: "Priére d'entrer le poste " })
-    niveauEtude: string; 
-    @IsNotEmpty({ message: "Priére d'entrer le poste " })
+    @IsNotEmpty({ message: "Priére d'entrer le type de contrat" })
+    typeContrat: TypeContratEnum;  
+    @IsOptional()
+    secteur: string; 
+    @IsOptional()
     langue: string; 
-    @IsNotEmpty({ message: "Priére d'entrer le poste " })
+    @IsOptional()
     genre: string;
     @IsOptional()
     description: string;
     @IsOptional()
-    @Prop()
-    @IsOptional()
     competences: string;
-    @Prop()
     @IsOptional()
     dateExpiration: string;
-    @IsNotEmpty({ message: "Priére d'entrer les mots clés " })
+    @IsOptional()
     @Prop([String])
     @IsOptional()
     motsCles: string[];
