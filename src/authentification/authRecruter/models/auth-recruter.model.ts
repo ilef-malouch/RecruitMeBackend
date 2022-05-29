@@ -27,7 +27,7 @@ export class AuthRecruter extends mongoose.Document{
     Password:string;
     @Prop({required:true})
     ConfirmPassword:string;
-    @Prop({required:true})
+    @Prop()
     Type:string;
     @Prop()
     Comment:string;

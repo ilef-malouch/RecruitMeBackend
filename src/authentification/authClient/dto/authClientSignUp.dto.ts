@@ -1,4 +1,5 @@
-import {  IsEmail, IsNotEmpty, IsOptional, MinLength} from "class-validator" ;
+import {  IsEmail, IsNotEmpty, MinLength} from "class-validator" ;
+import { Optional } from "class-validator-extended";
 
 export  class authClientSignUpDto {
    
@@ -23,11 +24,12 @@ export  class authClientSignUpDto {
         message: "Vous devez spécifier une valeur"
         })
     Domaine:string;
-    @IsOptional()
+    
+    @Optional()
     GithubLink:string;
-    @IsOptional()
+    @Optional()
     LinkedinLink:string;
-    @IsOptional()
+    @Optional()
     PhoneNumber:number;
   
    
@@ -54,7 +56,8 @@ export  class authClientSignUpDto {
         message:"taille courte"
     }) 
     ConfirmPassword:string;
-    @IsNotEmpty()
+    
+    @Optional()
     Type:string;
    
     Comment:string;
