@@ -1,3 +1,4 @@
+import { Optional } from "@nestjs/common";
 import {  IsEmail, IsNotEmpty, MinLength} from "class-validator" ;
 
 export  class authRecruterSignUpDto {
@@ -13,16 +14,19 @@ export  class authRecruterSignUpDto {
         message: "Vous devez spécifier une valeur"
         })
     IdCompagny:string;
-
-    FacebookLink:string;
-    LinkedinLink:string;
-    PhoneNumber:string;
     
     @IsNotEmpty({
         message: "Vous devez spécifier une valeur"
         })
     Domaine:string;
-  
+
+    @IsNotEmpty()
+    FacebookLink:string;
+    @IsNotEmpty()
+    LinkedinLink:string;
+    @IsNotEmpty()
+    PhoneNumber:string;
+    
     @IsNotEmpty({
         message: "Vous devez spécifier une valeur"
         })
@@ -47,6 +51,7 @@ export  class authRecruterSignUpDto {
     }) 
     ConfirmPassword:string;
     
+    @IsNotEmpty()
     Type:string;
    
     Comment:string;
