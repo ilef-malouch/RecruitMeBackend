@@ -34,6 +34,8 @@ export class JobsService {
             motsCles: job.motsCles
         });
         createdJob.save()
+        console.log(createdJob);
+        
         return this._getJobDetails(createdJob );
     }
 
