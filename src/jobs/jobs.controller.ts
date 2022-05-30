@@ -3,7 +3,6 @@ import { JwtAuthGuard } from 'src/authentification/authClient/guads/JwtGuard.gua
 import { GetRecruter } from 'src/authentification/authRecruter/decorateur/getUser.paramDecorater';
 import { CreateJobDto } from './dtos/create-job-dto';
 import { JobDetails } from './job-details.interface';
-import { Job } from './job.schema';
 import { JobsService } from './jobs.service';
 
 @Controller('jobs')
@@ -20,12 +19,15 @@ export class JobsController {
     getJobs() {
         return this.jobsService.findAll();
     }
-<<<<<<< HEAD
-}
-=======
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.jobsService.findOne(id);
+
+    @Get("sector/:sector")
+    getJobsBySector(@Param("sector") secteur:any) {
+        return this.jobsService.findBySector(secteur);
+    }
+    
+
+    @Get("contract/:contract")
+    getJobsByContract(@Param("contract") contract:any) {
+        return this.jobsService.findByContract(contract);
     }
 }
->>>>>>> d1600b01aeddc415076acb9f477d274f831d9d22
