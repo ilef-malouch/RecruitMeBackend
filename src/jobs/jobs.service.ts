@@ -4,6 +4,7 @@ import { CreateJobDto } from './dtos/create-job-dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { JobDetails } from './job-details.interface';
+import { AuthRecruter } from 'src/authentification/authRecruter/models/auth-recruter.model';
 @Injectable()
 export class JobsService {
     constructor(@InjectModel('Job') private jobModel: Model<JobDocument>) { }
@@ -21,7 +22,7 @@ export class JobsService {
             motsCles: job.motsCles
         };
     }
-    async create(job: CreateJobDto): Promise<JobDetails> {
+    async create(job: CreateJobDto,recruter:AuthRecruter): Promise<JobDetails> {
         const createdJob = new this.jobModel({
             poste: job.poste,
             typeContrat: job.typeContrat,
@@ -31,7 +32,8 @@ export class JobsService {
             description: job.description,
             competences: job.competences,
             dateExpiration: job.dateExpiration,
-            motsCles: job.motsCles
+            motsCles: job.motsCles,
+            recruter
         });
         createdJob.save()
         console.log(createdJob);
@@ -39,7 +41,11 @@ export class JobsService {
         return this._getJobDetails(createdJob );
     }
 
-    async findAll(): Promise<Job[]> {
-        return this.jobModel.find().exec();
+    async findAll() {
+        return this.jobModel.find().populate('recruter').exec();
+    }
+
+    async findOne(id:string): Promise<Job> {
+        return this.jobModel.findById(id).exec();
     }
 }

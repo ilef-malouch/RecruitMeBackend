@@ -1,17 +1,27 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/authentification/authClient/guads/JwtGuard.guard';
+import { GetRecruter } from 'src/authentification/authRecruter/decorateur/getUser.paramDecorater';
 import { CreateJobDto } from './dtos/create-job-dto';
+import { JobDetails } from './job-details.interface';
 import { Job } from './job.schema';
 import { JobsService } from './jobs.service';
 
 @Controller('jobs')
 export class JobsController {
-    constructor(private   jobsService:JobsService){}
+    constructor(private jobsService: JobsService) { }
     @Post('add-job')
-    addJob(@Body() createJobDto:CreateJobDto):Promise<Job| null>{
-        return  this.jobsService.create(createJobDto);
+    @UseGuards(JwtAuthGuard)
+    addJob(@Body() createJobDto: CreateJobDto,
+        @GetRecruter() recruter
+    ): Promise<JobDetails | null> {
+        return this.jobsService.create(createJobDto, recruter);
     }
     @Get()
-    getJobs():Promise<Job[]>{
+    getJobs() {
         return this.jobsService.findAll();
+    }
+    @Get(':id')
+    findOne(@Param('id') id: string) {
+        return this.jobsService.findOne(id);
     }
 }

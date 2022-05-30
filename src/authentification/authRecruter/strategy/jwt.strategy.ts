@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { AuthrecruterService } from "../authrecruter.service";
@@ -8,8 +8,8 @@ import { AuthrecruterService } from "../authrecruter.service";
 
 @Injectable()
 export class JwtStrategyRecruter extends PassportStrategy(Strategy,'jwt') {
-  authRecruterService:AuthrecruterService ;
-  constructor() {
+  
+  constructor( private authRecruterService:AuthrecruterService) {
       super({
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         ignoreExpiration: false,
@@ -17,8 +17,16 @@ export class JwtStrategyRecruter extends PassportStrategy(Strategy,'jwt') {
       });
     }
    async validate(payload:any) {
-   
-      return this.authRecruterService.verifyRecruter(payload)
+     console.log(payload);
+     
+    const user = await this.authRecruterService.findRecruterByEmail(
+      payload.email,
+    );
+    if (!user) {
+      throw new UnauthorizedException('Veuillez vérifier vos credentials');
+    }
+    return user;
+      // return this.authRecruterService.verifyRecruter(payload)
      }
   
    
