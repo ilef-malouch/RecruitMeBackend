@@ -60,12 +60,12 @@ export class AuthclientController {
     uploadCv(
     @Param("jwt")jwt,
     @UploadedFile() file: Express.Multer.File) {
-    console.log("com")
+    
     const response = {
     originalname: file.originalname,
     filename: file.filename,
     };
-   console.log("emnce")
+  
     console.log(response.filename);
     return this.authClientService.updateCv(jwt,response.filename);
    
