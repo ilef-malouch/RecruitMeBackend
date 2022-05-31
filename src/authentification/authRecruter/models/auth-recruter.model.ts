@@ -40,6 +40,12 @@ export class AuthRecruter extends mongoose.Document {
 
     @Type(() => Job)
     posts: Job[];
+    // comments: [
+    //     {
+    //       type: mongoose.Schema.Types.ObjectId,
+    //       ref: "Comment"
+    //     }
+    //   ],
 
 }
 export const AuthRecruterSchema = SchemaFactory.createForClass(AuthRecruter);

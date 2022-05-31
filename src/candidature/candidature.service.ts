@@ -23,6 +23,7 @@ export class CandidatureService {
             email: candidature.email,
             phone: candidature.phone,
             cv:candidature.cv,
+            offre:candidature.offre,
             client
         });
         createdCandidature.save()

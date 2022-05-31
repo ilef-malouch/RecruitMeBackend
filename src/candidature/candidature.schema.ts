@@ -3,6 +3,7 @@ import { Type } from 'class-transformer';
 import mongoose from 'mongoose';
 import { Document } from 'mongoose'; 
 import { AuthClient } from 'src/authentification/authClient/models/auth-client.model'; 
+import { Job } from 'src/jobs/job.schema';
 export type CandidatureDocument = Candidature & Document;
 
 @Schema()
@@ -16,6 +17,9 @@ export class Candidature {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'authClient' })
   @Type(() => AuthClient)
   candidat: AuthClient ;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'job' })
+  @Type(() => Job)
+  offre: Job ;
 }
 
 export const CandidatureSchema = SchemaFactory.createForClass(Candidature);
