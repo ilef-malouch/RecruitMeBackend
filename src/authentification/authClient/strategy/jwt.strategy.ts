@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { AuthclientService } from "../authclient.service";
@@ -17,7 +17,16 @@ export class JwtStrategyClient extends PassportStrategy(Strategy,'jwt') {
     }
    async validate(payload:any) {
    
-      return this.authClientService.verifyClient(payload)
+    const user = await this.authClientService.findClientByEmail(
+      payload.email,
+    );
+    console.log("maaail",payload.email);
+    
+    if (!user) {
+      throw new UnauthorizedException('Veuillez vérifier vos credentials');
+    }
+    return user;
+      // return this.authClientService.verifyClient(payload)
      }
   
    
