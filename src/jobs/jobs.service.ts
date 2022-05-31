@@ -51,6 +51,7 @@ export class JobsService {
     }
     
     async findByContract(contract:any) {
+        
         return this.jobModel.find({typeContrat:contract});
     }
 
