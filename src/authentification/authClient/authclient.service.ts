@@ -65,6 +65,9 @@ export class AuthclientService {
         return client ;
     }
     
+    // async geCandidatures(client: AuthClient) {
+    //     return this.jobsService.findAllByRecruter(recruter._id)
+    // }
     async updateCv(jwt:string, imageName:string){
         const client =await this.findClientByJWT(jwt); 
         client.Cv="http://localhost:8000/recrutme/authclient/"+imageName ;

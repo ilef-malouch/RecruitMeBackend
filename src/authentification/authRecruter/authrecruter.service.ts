@@ -10,11 +10,13 @@ import { authRecruterSignUpDto } from './dto/authRecruterSignUp.dto';
 import { UnconfirmException } from './exceptions/confirm.exception';
 import { ExistingEmailException } from './exceptions/ExistingEmail.exception';
 import { JobsService } from 'src/jobs/jobs.service';
+import { CandidatureService } from 'src/candidature/candidature.service';
 
 @Injectable()
 export class AuthrecruterService {
     constructor(@InjectModel("authRecruter") private authRecruterModel: Model<AuthRecruterDocument>,
         private jobsService: JobsService,
+        private candidatureService: CandidatureService,
         private jwtService: JwtService) { }
 
     async insertRecruter(createAuthRecruterDto: any): Promise<AuthRecruter> {
@@ -86,6 +88,9 @@ export class AuthrecruterService {
 
     async getPostsByRecruter(recruter: AuthRecruter) {
         return this.jobsService.findAllByRecruter(recruter._id)
+    }
+    async getCandidatures(id:string ){
+        return this.candidatureService.findAllByRecruter(id)
     }
     async signUpRecruter(dto: authRecruterSignUpDto) {
 

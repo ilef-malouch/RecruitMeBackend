@@ -26,6 +26,11 @@ export class AuthrecruterController {
     
     return this.authRecruterService.getPostsByRecruter(recruter)
   } 
+  @Get('candidat/:id')
+  getCandidatures(@Param('id')id:string){
+    return this.authRecruterService.getCandidatures(id);
+  }
+
   @Post("/signin")
   async signIn(@Body() dto: authRecruterSignInDto, @Res({ passthrough: true }) response: Response) {
 

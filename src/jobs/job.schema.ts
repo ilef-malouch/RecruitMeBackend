@@ -4,6 +4,7 @@ import { IsOptional } from 'class-validator';
 import mongoose from 'mongoose';
 import { Document } from 'mongoose'; 
 import { AuthRecruter } from 'src/authentification/authRecruter/models/auth-recruter.model';
+import { Candidature, CandidatureSchema } from 'src/candidature/Candidature.schema';
 import { TypeContratEnum } from './enums/todo-status.enum';
 export type JobDocument = Job & Document;
 
@@ -29,7 +30,9 @@ export class Job {
   motsCles: string[];
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'authRecruter' })
   @Type(() => AuthRecruter)
-  recruter: AuthRecruter ;
+  recruter: AuthRecruter ; 
+  @Type(() => Candidature)
+  offre: Candidature[] ;
 }
 
 export const JobSchema = SchemaFactory.createForClass(Job);
