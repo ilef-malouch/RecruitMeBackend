@@ -2,11 +2,7 @@ import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/authentification/authClient/guads/JwtGuard.guard';
 import { GetRecruter } from 'src/authentification/authRecruter/decorateur/getUser.paramDecorater'; 
 import { CreateJobDto } from './dtos/create-job-dto';
-<<<<<<< HEAD
 import { JobDetails } from './job-details.interface'; 
-=======
-import { JobDetails } from './job-details.interface';
->>>>>>> 99098b3fba227d6b39eecfd6ce89bd0d16b0ea06
 import { JobsService } from './jobs.service';
 
 @Controller('jobs')
@@ -22,6 +18,10 @@ export class JobsController {
     @Get()
     getJobs() {
         return this.jobsService.findAll();
+    }
+    @Get(':id')
+    findOne(@Param('id') id: string) {
+        return this.jobsService.findOne(id);
     }
 
     @Get("sector/:sector")
