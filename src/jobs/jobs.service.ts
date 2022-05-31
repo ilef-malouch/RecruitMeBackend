@@ -22,6 +22,7 @@ export class JobsService {
             motsCles: job.motsCles
         };
     }
+    
     async create(job: CreateJobDto,recruter:AuthRecruter): Promise<JobDetails> {
         const createdJob = new this.jobModel({
             poste: job.poste,
@@ -46,6 +47,6 @@ export class JobsService {
     }
 
     async findOne(id:string): Promise<Job> {
-        return this.jobModel.findById(id).exec();
+        return this.jobModel.findById(id).populate('recruter').exec();
     }
 }

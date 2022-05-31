@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Req, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthclientService } from './authclient.service';
 import { authClientSignInDto } from './dto/authClientSignIn.dto';
@@ -6,7 +6,7 @@ import { Response ,Request } from 'express';
 import { authClientSignUpDto } from './dto/authClientSignUp.dto';
 import { diskStorage } from 'multer';
 
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid' 
 
 const editFileName = (req, file, cb) => {
   const randomName = uuidv4()+file.originalname;

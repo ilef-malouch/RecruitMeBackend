@@ -39,6 +39,12 @@ export class AuthrecruterService {
             return Recruter ;
         }
     }
+    async findRecruterById(id:string):Promise<AuthRecruter>{
+        const Recruter =await this.authRecruterModel.findById(id);
+        if(Recruter){
+            return Recruter ;
+        }
+    }
     
     async findRecruterByJWT(jwt:string):Promise<AuthRecruter>{
         

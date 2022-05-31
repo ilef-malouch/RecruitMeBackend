@@ -73,6 +73,25 @@ export class AuthrecruterController {
       };
     }
 
+    // @Get("/recruterInfo/:jwt")
+    // async getRecruterInfoById(@Param("id")){
+    //   const recruterInfo= this.authRecruterService.findRecruterByJWT(jwt);
+    //   const recruter = await recruterInfo;
+    //   console.log("zaineb")
+    //   return {
+    //     "compagnyName": recruter.CompagnyName,
+    //     "idCompagny": recruter.IdCompagny,
+    //     "domaine": recruter.Domaine,
+    //     "email": recruter.Email,
+    //     "facebookLink": recruter.FacebookLink,
+    //     "linkedinLink": recruter.LinkedinLink,
+    //     "image":recruter.Image,
+    //   };
+    // }
+    @Get('/:id')
+    findOne(@Param('id') id: string) {
+        return this.authRecruterService.findRecruterById(id);
+    }
     @Get('signout')
     async logout(@Req()req:Request,@Res({ passthrough: true }) res: Response) {
       

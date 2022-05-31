@@ -1,9 +1,8 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/authentification/authClient/guads/JwtGuard.guard';
-import { GetRecruter } from 'src/authentification/authRecruter/decorateur/getUser.paramDecorater';
+import { GetRecruter } from 'src/authentification/authRecruter/decorateur/getUser.paramDecorater'; 
 import { CreateJobDto } from './dtos/create-job-dto';
-import { JobDetails } from './job-details.interface';
-import { Job } from './job.schema';
+import { JobDetails } from './job-details.interface'; 
 import { JobsService } from './jobs.service';
 
 @Controller('jobs')
