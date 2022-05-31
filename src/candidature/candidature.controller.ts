@@ -9,14 +9,14 @@ import { CandidatureService } from './candidature.service';
 export class CandidatureController {
     constructor(private candidatureService:CandidatureService){}
     @Post('postuler')
-    // @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     addCandidat(@Body() createCandidatureDto: CreateCandidatureDto,
-    @Request() req
-        // @GetClient() client
+    // @Request() req
+        @GetClient() client
     ): Promise<CandidatureDetails | null> {
-        console.log("hola" ,req.user);
+        console.log("hola" ,client);
         
-        return this.candidatureService.create(createCandidatureDto, req.user);
+        return this.candidatureService.create(createCandidatureDto, client);
     }
     
     @Get()

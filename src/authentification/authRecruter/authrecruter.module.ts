@@ -6,9 +6,13 @@ import { AuthrecruterService } from './authrecruter.service';
 import { AuthRecruterSchema } from './models/auth-recruter.model';
 import { JwtStrategyRecruter } from './strategy/jwt.strategy';
 import { AuthrecruterController } from './authrecruter.controller';
+import { JobsService } from 'src/jobs/jobs.service';
+import { JobsModule } from 'src/jobs/jobs.module';
+import { CandidatureModule } from 'src/candidature/candidature.module';
 
 @Module({
-  imports:[
+  imports:[JobsModule,
+    CandidatureModule, 
     JwtModule.register({
       secret:"secret",
       signOptions: {

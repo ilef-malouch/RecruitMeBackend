@@ -46,6 +46,10 @@ export class JobsService {
         return this.jobModel.find().populate('recruter').exec();
     }
 
+    async findAllByRecruter(id : string) {
+        return this.jobModel.find( {recruter:id} ).exec();
+    }
+
     async findBySector(secteur:any) {
         return this.jobModel.find({secteur:secteur});
     }
