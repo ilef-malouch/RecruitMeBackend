@@ -12,12 +12,12 @@ export class JwtStrategyRecruter extends PassportStrategy(Strategy,'jwt') {
   constructor( private authRecruterService:AuthrecruterService) {
       super({
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        ignoreExpiration: false,
+        ignoreExpiration: true,
         secretOrKey:"secret",
       });
     }
    async validate(payload:any) {
-     console.log(payload);
+     console.log("im recruter",payload);
      
     const user = await this.authRecruterService.findRecruterByEmail(
       payload.email,
