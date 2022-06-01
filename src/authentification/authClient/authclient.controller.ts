@@ -114,4 +114,21 @@ export class AuthclientController {
        
         return { token :token};
     }
+
+    @Get("candidateInfo/:email")
+    async getCandidateInfo(@Param("email")email:any){
+      const clientInfo= this.authClientService.findClientByEmail(email);
+      const client = await clientInfo; 
+      return {
+        "firstName": client.FirstName,
+        "familyName": client.FamilyName,
+        "birthday": client.Birthday,
+        "domaine": client.Domaine,
+        "email": client.Email,
+        "githubLink":client.GithubLink,
+        "linkedinLink":client.LinkedinLink,
+        "image":client.Image,
+        "cv":client.Cv,
+      };
+    }
 }

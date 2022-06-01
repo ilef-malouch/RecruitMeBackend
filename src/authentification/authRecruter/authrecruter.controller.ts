@@ -52,13 +52,10 @@ export class AuthrecruterController {
   uploadFile(
     @Param("jwt") jwt,
     @UploadedFile() file: Express.Multer.File) {
-    console.log("1")
     const response = {
       originalname: file.originalname,
       filename: file.filename,
     };
-    console.log("2")
-    console.log(response.filename);
     return this.authRecruterService.updatePicture(jwt, response.filename);
 
 

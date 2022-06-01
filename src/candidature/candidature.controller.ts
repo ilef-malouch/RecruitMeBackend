@@ -1,4 +1,6 @@
-import { Body, Controller, Get, Param, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Request, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 import { GetClient } from 'src/authentification/authClient/decorateur/getUser.paramDecorater';
 import { JwtAuthGuard } from 'src/authentification/authClient/guads/JwtGuard.guard';
 import { CreateCandidatureDto } from './candidature-dto';
@@ -27,4 +29,17 @@ export class CandidatureController {
     findOne(@Param('id') id: string) {
         return this.candidatureService.findOne(id);
     }
+
+    @Post('upload')
+    @UseInterceptors(FileInterceptor('file'))
+    uploadFile(@UploadedFile() file: Express.Multer.File) {
+        console.log("name");
+        console.log(file.originalname);
+        return file;
+        
+    }
+
+    
+
+
 }

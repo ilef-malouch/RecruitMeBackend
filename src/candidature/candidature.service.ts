@@ -18,7 +18,7 @@ export class CandidatureService {
         };
     }
 
-    async create(candidature: CreateCandidatureDto, client: AuthClient): Promise<CandidatureDetails> {
+    async create(candidature: CreateCandidatureDto, client: AuthClient,cv?:any): Promise<CandidatureDetails> {
         const createdCandidature = new this.candidatureModel({
             email: candidature.email,
             phone: candidature.phone,
@@ -41,4 +41,6 @@ export class CandidatureService {
     async findOne(id: string) {
         return this.candidatureModel.findById(id).populate('client').exec();
     }
+
+   
 }
