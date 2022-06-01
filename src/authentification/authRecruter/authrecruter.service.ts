@@ -33,6 +33,8 @@ export class AuthrecruterService {
 
     async updatePicture(jwt: string, imageName: string) {
         const client = await this.findRecruterByJWT(jwt);
+        console.log(('jwt pic '+client));
+        
         client.Image = "http://localhost:8000/recrutme/authrecruter/" + imageName;
         client.save();
         return client;

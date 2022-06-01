@@ -16,7 +16,7 @@ import { CandidatureModule } from 'src/candidature/candidature.module';
     JwtModule.register({
       secret:"secret",
       signOptions: {
-      expiresIn: '24h',
+      expiresIn: '48h',
       }
       }),
     PassportModule.register({defaultStrategy: 'jwt'}),

@@ -78,18 +78,19 @@ export class AuthrecruterController {
 
   @Get("/recruterInfo/:jwt")
   async getRecruterInfo(@Param("jwt") jwt: any) {
-    const recruterInfo = this.authRecruterService.findRecruterByJWT(jwt);
-    const recruter = await recruterInfo;
-    console.log("zaineb")
-    return {
-      "compagnyName": recruter.CompagnyName,
-      "idCompagny": recruter.IdCompagny,
-      "domaine": recruter.Domaine,
-      "email": recruter.Email,
-      "facebookLink": recruter.FacebookLink,
-      "linkedinLink": recruter.LinkedinLink,
-      "image": recruter.Image,
-    };
+    // const recruterInfo =
+    return this.authRecruterService.findRecruterByJWT(jwt);
+    // const recruter = await recruterInfo;
+    // console.log("zaineb")
+    // return {
+    //   "compagnyName": recruter.CompagnyName,
+    //   "idCompagny": recruter.IdCompagny,
+    //   "domaine": recruter.Domaine,
+    //   "email": recruter.Email,
+    //   "facebookLink": recruter.FacebookLink,
+    //   "linkedinLink": recruter.LinkedinLink,
+    //   "image": recruter.Image,
+    // };
   }
 
   // @Get("/recruterInfo/:jwt")
